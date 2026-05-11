@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicina Rural - Solicita tu Cita</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary: #0078d7;
+            --secondary: #00a86b;
+            --danger: #dc3545;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 450px;
+        }
+        
+        .auth-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .auth-header i {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #0056a3);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0056a3, #003d7a);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--secondary), #006838);
+            border: none;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .nav-link.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .navbar {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .alert {
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN/REGISTRO PACIENTES -->
+<div id="authSection" class="d-flex align-items-center justify-content-center min-vh-100 p-3">
+    <div class="auth-card">
+        <div class="auth-header">
+            <i class="bi bi-hospital"></i>
+            <h2>Telemedicina Rural</h2>
+            <p>Tu salud, nuestro compromiso</p>
+        </div>
+        
+        <div class="card-body p-4">
+            <ul class="nav nav-tabs mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="loginTab" data-bs-toggle="tab" data-bs-target="#login" type="button">
+                        <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="registerTab" data-bs-toggle="tab" data-bs-target="#register" type="button">
+                        <i class="bi bi-person-plus"></i> Registrarse
+                    </button>
+                </li>
+            </ul>
+            
+            <div class="tab-content">
+                <!-- LOGIN -->
+                <div class="tab-pane fade show active" id="login">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">DNI</label>
+                            <input type="text" id="loginDNI" class="form-control" placeholder="12345678" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" id="loginPass" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                        </button>
+                        <div id="loginError" class="alert alert-danger mt-3 d-none"></div>
+                    </form>
+                </div>
+                
+                <!-- REGISTRO -->
+                <div class="tab-pane fade" id="register">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>\n                            <input type="text" id="regNombre" class="form-control" required>\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">DNI</label>\n                            <input type="text" id="regDNI" class="form-control" required>\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Email</label>\n                            <input type="email" id="regEmail" class="form-control" required>\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Teléfono</label>\n                            <input type="tel" id="regTelefono" class="form-control" required>\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Edad</label>\n                            <input type="number" id="regEdad" class="form-control" required>\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Contraseña</label>\n                            <input type="password" id="regPass" class="form-control" required>\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Confirmar Contraseña</label>\n                            <input type="password" id="regPassConfirm" class="form-control" required>\n                        </div>\n                        <button type="submit" class="btn btn-success w-100">\n                            <i class="bi bi-person-plus"></i> Registrarse\n                        </button>\n                        <div id="registerError" class="alert alert-danger mt-3 d-none"></div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<!-- PORTAL PACIENTE -->\n<div id=\"portalPaciente\" class=\"d-none\">\n    <nav class=\"navbar navbar-dark\">\n        <div class=\"container-fluid\">\n            <span class=\"navbar-brand mb-0 h1\">\n                <i class=\"bi bi-hospital\"></i> Telemedicina Rural\n            </span>\n            <div class=\"d-flex gap-3\">\n                <span class=\"text-white\" id=\"nombrePaciente\"></span>\n                <button class=\"btn btn-outline-light btn-sm\" onclick=\"logoutPaciente()\">\n                    <i class=\"bi bi-box-arrow-right\"></i> Salir\n                </button>\n            </div>\n        </div>\n    </nav>\n    \n    <div class=\"container py-4\">\n        <ul class=\"nav nav-tabs mb-4\">\n            <li class=\"nav-item\">\n                <button class=\"nav-link active\" data-bs-toggle=\"tab\" data-bs-target=\"#solicitar\">\n                    <i class=\"bi bi-calendar-plus\"></i> Solicitar Cita\n                </button>\n            </li>\n            <li class=\"nav-item\">\n                <button class=\"nav-link\" data-bs-toggle=\"tab\" data-bs-target=\"#misCitas\">\n                    <i class=\"bi bi-calendar-check\"></i> Mis Citas\n                </button>\n            </li>\n            <li class=\"nav-item\">\n                <button class=\"nav-link\" data-bs-toggle=\"tab\" data-bs-target=\"#perfil\">\n                    <i class=\"bi bi-person\"></i> Mi Perfil\n                </button>\n            </li>\n        </ul>\n        \n        <div class=\"tab-content\">\n            <!-- SOLICITAR CITA -->\n            <div class=\"tab-pane fade show active\" id=\"solicitar\">\n                <div class=\"row\">\n                    <div class=\"col-lg-8\">\n                        <div class=\"card\">\n                            <div class=\"card-header bg-primary text-white\">\n                                <h5 class=\"mb-0\"><i class=\"bi bi-calendar-plus\"></i> Solicitar Nueva Cita</h5>\n                            </div>\n                            <div class=\"card-body\">\n                                <form id=\"formCita\">\n                                    <div class=\"row mb-3\">\n                                        <div class=\"col-md-6\">\n                                            <label class=\"form-label\">Tipo de Consulta</label>\n                                            <select id=\"tipoCita\" class=\"form-select\" required>\n                                                <option value=\"\">Seleccionar...</option>\n                                                <option value=\"general\">Consulta General</option>\n                                                <option value=\"seguimiento\">Seguimiento</option>\n                                                <option value=\"pediatrica\">Pediátrica</option>\n                                                <option value=\"prenatal\">Prenatal</option>\n                                                <option value=\"emergencia\">Emergencia</option>\n                                            </select>\n                                        </div>\n                                        <div class=\"col-md-6\">\n                                            <label class=\"form-label\">Especialidad</label>\n                                            <select id=\"especialidad\" class=\"form-select\" required>\n                                                <option value=\"\">Seleccionar...</option>\n                                                <option value=\"general\">Medicina General</option>\n                                                <option value=\"pediatria\">Pediatría</option>\n                                                <option value=\"ginecologia\">Ginecología</option>\n                                                <option value=\"enfermeria\">Enfermería</option>\n                                                <option value=\"nutricion\">Nutrición</option>\n                                            </select>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"mb-3\">\n                                        <label class=\"form-label\">Motivo de la Consulta</label>\n                                        <textarea id=\"motivo\" class=\"form-control\" rows=\"3\" required></textarea>\n                                    </div>\n                                    \n                                    <div class=\"row mb-3\">\n                                        <div class=\"col-md-6\">\n                                            <label class=\"form-label\">Fecha Preferida</label>\n                                            <input type=\"date\" id=\"fecha\" class=\"form-control\" required>\n                                        </div>\n                                        <div class=\"col-md-6\">\n                                            <label class=\"form-label\">Hora Preferida</label>\n                                            <select id=\"hora\" class=\"form-select\" required>\n                                                <option value=\"\">Seleccionar...</option>\n                                                <option value=\"08:00\">08:00 AM</option>\n                                                <option value=\"09:00\">09:00 AM</option>\n                                                <option value=\"10:00\">10:00 AM</option>\n                                                <option value=\"11:00\">11:00 AM</option>\n                                                <option value=\"14:00\">02:00 PM</option>\n                                                <option value=\"15:00\">03:00 PM</option>\n                                                <option value=\"16:00\">04:00 PM</option>\n                                                <option value=\"17:00\">05:00 PM</option>\n                                            </select>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"mb-3\">\n                                        <div class=\"form-check\">\n                                            <input class=\"form-check-input\" type=\"checkbox\" id=\"urgente\">\n                                            <label class=\"form-check-label\" for=\"urgente\">\n                                                Marcar como urgencia\n                                            </label>\n                                        </div>\n                                    </div>\n                                    \n                                    <button type=\"submit\" class=\"btn btn-primary w-100\">\n                                        <i class=\"bi bi-check-circle\"></i> Solicitar Cita\n                                    </button>\n                                </form>\n                                <div id=\"mensajeCita\" class=\"alert mt-3 d-none\"></div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            \n            <!-- MIS CITAS -->\n            <div class=\"tab-pane fade\" id=\"misCitas\">\n                <div class=\"card\">\n                    <div class=\"card-header bg-info text-white\">\n                        <h5 class=\"mb-0\"><i class=\"bi bi-calendar-check\"></i> Mis Citas</h5>\n                    </div>\n                    <div class=\"card-body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-hover\">\n                                <thead>\n                                    <tr>\n                                        <th>Fecha</th>\n                                        <th>Hora</th>\n                                        <th>Especialidad</th>\n                                        <th>Estado</th>\n                                        <th>Acciones</th>\n                                    </tr>\n                                </thead>\n                                <tbody id=\"tablaCitas\"></tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            \n            <!-- PERFIL -->\n            <div class=\"tab-pane fade\" id=\"perfil\">\n                <div class=\"row\">\n                    <div class=\"col-lg-6\">\n                        <div class=\"card\">\n                            <div class=\"card-header bg-success text-white\">\n                                <h5 class=\"mb-0\"><i class=\"bi bi-person\"></i> Mi Información</h5>\n                            </div>\n                            <div class=\"card-body\">\n                                <div class=\"mb-3\">\n                                    <label class=\"form-label\">Nombre</label>\n                                    <input type=\"text\" id=\"perfilNombre\" class=\"form-control\" readonly>\n                                </div>\n                                <div class=\"mb-3\">\n                                    <label class=\"form-label\">DNI</label>\n                                    <input type=\"text\" id=\"perfilDNI\" class=\"form-control\" readonly>\n                                </div>\n                                <div class=\"mb-3\">\n                                    <label class=\"form-label\">Email</label>\n                                    <input type=\"email\" id=\"perfilEmail\" class=\"form-control\">\n                                </div>\n                                <div class=\"mb-3\">\n                                    <label class=\"form-label\">Teléfono</label>\n                                    <input type=\"tel\" id=\"perfilTelefono\" class=\"form-control\">\n                                </div>\n                                <div class=\"mb-3\">\n                                    <label class=\"form-label\">Edad</label>\n                                    <input type=\"number\" id=\"perfilEdad\" class=\"form-control\">\n                                </div>\n                                <button class=\"btn btn-success w-100\" onclick=\"guardarPerfil()\">\n                                    <i class=\"bi bi-save\"></i> Guardar Cambios\n                                </button>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<!-- PANEL M\u00c9DICOS -->\n<div id=\"panelMedico\" class=\"d-none\">\n    <nav class=\"navbar navbar-dark\" style=\"background: linear-gradient(90deg, #333, #555)\">\n        <div class=\"container-fluid\">\n            <span class=\"navbar-brand mb-0 h1\">\n                <i class=\"bi bi-stethoscope\"></i> Panel Médico\n            </span>\n            <div class=\"d-flex gap-3\">\n                <span class=\"text-white\" id=\"nombreMedico\"></span>\n                <button class=\"btn btn-outline-light btn-sm\" onclick=\"logoutMedico()\">\n                    <i class=\"bi bi-box-arrow-right\"></i> Salir\n                </button>\n            </div>\n        </div>\n    </nav>\n    \n    <div class=\"container-fluid py-4\">\n        <ul class=\"nav nav-tabs mb-4\">\n            <li class=\"nav-item\">\n                <button class=\"nav-link active\" data-bs-toggle=\"tab\" data-bs-target=\"#solicitadas\">\n                    <i class=\"bi bi-hourglass\"></i> Citas Solicitadas\n                </button>\n            </li>\n            <li class=\"nav-item\">\n                <button class=\"nav-link\" data-bs-toggle=\"tab\" data-bs-target=\"#confirmadas\">\n                    <i class=\"bi bi-calendar-check\"></i> Citas Confirmadas\n                </button>\n            </li>\n        </ul>\n        \n        <div class=\"tab-content\">\n            <!-- CITAS SOLICITADAS -->\n            <div class=\"tab-pane fade show active\" id=\"solicitadas\">\n                <div class=\"card\">\n                    <div class=\"card-header bg-warning\">\n                        <h5 class=\"mb-0\">⏳ Citas Pendientes de Aprobación</h5>\n                    </div>\n                    <div class=\"card-body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-hover\">\n                                <thead>\n                                    <tr>\n                                        <th>Paciente</th>\n                                        <th>Especialidad</th>\n                                        <th>Fecha Solicitada</th>\n                                        <th>Motivo</th>\n                                        <th>Urgencia</th>\n                                        <th>Acciones</th>\n                                    </tr>\n                                </thead>\n                                <tbody id=\"tablaSolicitadas\"></tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            \n            <!-- CITAS CONFIRMADAS -->\n            <div class=\"tab-pane fade\" id=\"confirmadas\">\n                <div class=\"card\">\n                    <div class=\"card-header bg-success text-white\">\n                        <h5 class=\"mb-0\">✅ Citas Confirmadas</h5>\n                    </div>\n                    <div class=\"card-body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-hover\">\n                                <thead>\n                                    <tr>\n                                        <th>Paciente</th>\n                                        <th>Fecha</th>\n                                        <th>Hora</th>\n                                        <th>Especialidad</th>\n                                        <th>Estado</th>\n                                    </tr>\n                                </thead>\n                                <tbody id=\"tablaConfirmadas\"></tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<!-- Modal para Confirmar Cita -->\n<div class=\"modal fade\" id=\"modalConfirmar\" tabindex=\"-1\">\n    <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header bg-success text-white\">\n                <h5 class=\"modal-title\">Confirmar Cita</h5>\n                <button type=\"button\" class=\"btn-close btn-close-white\" data-bs-dismiss=\"modal\"></button>\n            </div>\n            <div class=\"modal-body\">\n                <input type=\"hidden\" id=\"citaIdConfirmar\">\n                <div class=\"mb-3\">\n                    <label class=\"form-label\">Fecha Confirmada</label>\n                    <input type=\"date\" id=\"fechaConfirmar\" class=\"form-control\" required>\n                </div>\n                <div class=\"mb-3\">\n                    <label class=\"form-label\">Hora Confirmada</label>\n                    <input type=\"time\" id=\"horaConfirmar\" class=\"form-control\" required>\n                </div>\n                <div class=\"mb-3\">\n                    <label class=\"form-label\">Notas</label>\n                    <textarea id=\"notasConfirmar\" class=\"form-control\" rows=\"3\"></textarea>\n                </div>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Cancelar</button>\n                <button type=\"button\" class=\"btn btn-success\" onclick=\"confirmarCita()\">Confirmar</button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js\"></script>\n<script src=\"js/app.js\"></script>\n\n</body>\n</html>
