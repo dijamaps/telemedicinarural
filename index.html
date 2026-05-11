@@ -1,227 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Telemedicina Rural</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicina Rural - Solicita tu Cita Médica</title>
 
-<!-- Bootstrap -->
-https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css
-https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css
+    <!-- Bootstrap CSS -->
+    https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css
+    <!-- Bootstrap Icons -->
+    https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css
 
-<!-- Jitsi -->
-https://meet.jit.si/external_api.jsscript>
-
-<style>
-body { background:#f4f6f9 }
-.d-none { display:none }
-</style>
+    <!-- Estilos propios -->
+    css/style.css
 </head>
 <body>
 
-<!-- ================= AUTH ================= -->
-<div id="auth" class="container mt-5">
-  <div class="card mx-auto" style="max-width:400px">
-    <div class="card-body">
-      <h4 class="text-center">Telemedicina Rural</h4>
+<!-- PORTAL DE PACIENTES -->
+<div id="portalPacientes" class="portal-container">
 
-      <!-- LOGIN -->
-      <form id="loginForm">
-        <input class="form-control mb-2" id="loginDNI" placeholder="DNI" required>
-        <input class="form-control mb-2" id="loginPass" type="password" placeholder="Contraseña" required>
-        <button class="btn btn-primary w-100">Ingresar</button>
-        <p class="text-center mt-2">
-          #Registrarse</a>
-        </p>
-      </form>
+    <!-- Navegación Pacientes -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            #
+                <i class="bi bi-hospital"></i> Telemedicina Rural
+            </a>
+            <div class="ms-auto d-flex gap-2">
+                <span id="pacienteNombreNav" class="text-muted"></span>
+                <button class="btn btn-sm btn-outline-danger" id="cerrarSesionPac">
+                    <i class="bi bi-box-arrow-right"></i> Salir
+                </button>
+            </div>
+        </div>
+    </nav>
 
-      <!-- REGISTRO -->
-      <form id="registerForm" class="d-none">
-        <input class="form-control mb-2" id="regNombre" placeholder="Nombre" required>
-        <input class="form-control mb-2" id="regDNI" placeholder="DNI" required>
-        <input class="form-control mb-2" id="regEmail" placeholder="Email">
-        <input class="form-control mb-2" id="regPass" type="password" placeholder="Contraseña" required>
-        <button class="btn btn-success w-100">Crear Cuenta</button>
-        <p class="text-center mt-2">
-          #Volver</a>
-        </p>
-      </form>
+    <!-- Tabs Paciente -->
+    <div class="container py-4">
+        <ul class="nav nav-tabs mb-4" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#solicitarCita">
+                    <i class="bi bi-calendar-plus"></i> Solicitar Cita
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#misCitas">
+                    <i class="bi bi-calendar-check"></i> Mis Citas
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#miPerfil">
+                    <i class="bi bi-person-circle"></i> Mi Perfil
+                </button>
+            </li>
+        </ul>
+
+        <!-- Contenido Tabs -->
+        <div class="tab-content">
+
+            <!-- SOLICITAR CITA -->
+            <div class="tab-pane fade show active" id="solicitarCita">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-calendar-plus"></i> Solicitar Nueva Cita Médica
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tipo de Consulta</label>
+                                            <select class="form-select">
+                                                <option>Consulta General</option>
+                                                <option>Seguimiento</option>
+                                                <option>Pediátrica</option>
+                                                <option>Prenatal</option>
+                                                <option>Emergencia</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Especialidad</label>
+                                            <select class="form-select">
+                                                <option>Medicina General</option>
+                                                <option>Pediatría</option>
+                                                <option>Ginecología</option>
+                                                <option>Enfermería</option>
+                                                <option>Nutrición</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Motivo de la Consulta</label>
+                                        <textarea class="form-control" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Fecha Preferida</label>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Hora Preferida</label>
+                                            <select class="form-select">
+                                                <option>08:00</option>
+                                                <option>09:00</option>
+                                                <option>10:00</option>
+                                                <option>11:00</option>
+                                                <option>14:00</option>
+                                                <option>15:00</option>
+                                                <option>16:00</option>
+                                                <option>17:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-check-circle"></i> Solicitar Cita
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MIS CITAS -->
+            <div class="tab-pane fade" id="misCitas">
+                <h4 class="mb-3">Mis Citas Médicas</h4>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Especialidad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                No tienes citas programadas
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MI PERFIL -->
+            <div class="tab-pane fade" id="miPerfil">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <i class="bi bi-person"></i> Mi Información
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <button class="btn btn-primary w-100">
+                            <i class="bi bi-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
-<!-- ================= PORTAL PACIENTE ================= -->
-<div id="pacientePortal" class="d-none container mt-4">
-  <div class="d-flex justify-content-between">
-    <h4>Paciente: <span id="pacienteNombre"></span></h4>
-    <button class="btn btn-danger btn-sm" onclick="logout()">Salir</button>
-  </div>
-
-  <hr>
-
-  <h5>Solicitar Cita</h5>
-  <form id="citaForm" class="row g-2">
-    <input class="form-control col" id="fecha" type="date" required>
-    <input class="form-control col" id="hora" type="time" required>
-    <input class="form-control col" id="especialidad" placeholder="Especialidad" required>
-    <button class="btn btn-primary">Solicitar</button>
-  </form>
-
-  <h5 class="mt-4">Mis Citas</h5>
-  <table class="table">
-    <thead>
-      <tr><th>Fecha</th><th>Hora</th><th>Estado</th><th>Acción</th></tr>
-    </thead>
-    <tbody id="tablaPaciente"></tbody>
-  </table>
-</div>
-
-<!-- ================= PANEL MEDICO ================= -->
-<div id="medicoPortal" class="d-none container mt-4">
-  <h4>Panel Médico</h4>
-  <table class="table">
-    <thead>
-      <tr><th>Paciente</th><th>Fecha</th><th>Hora</th><th>Acción</th></tr>
-    </thead>
-    <tbody id="tablaMedico"></tbody>
-  </table>
-</div>
-
-<!-- ================= VIDEO ================= -->
-<div id="video" class="container mt-4"></div>
-
-<!-- ================= JS ================= -->
-<script>
-/* ====== UTIL ====== */
-const $ = id => document.getElementById(id);
-const hash = t => btoa(t);
-
-/* ====== DATOS ====== */
-const get = k => JSON.parse(localStorage.getItem(k)) || [];
-const set = (k,v) => localStorage.setItem(k, JSON.stringify(v));
-
-/* ====== AUTH ====== */
-function toggleAuth(){
-  loginForm.classList.toggle("d-none");
-  registerForm.classList.toggle("d-none");
-}
-
-loginForm.onsubmit = e => {
-  e.preventDefault();
-  const users = get("users");
-  const u = users.find(x=>x.dni===loginDNI.value && x.pass===hash(loginPass.value));
-  if(!u) return alert("Datos incorrectos");
-  set("activo", u);
-  iniciar();
-};
-
-registerForm.onsubmit = e => {
-  e.preventDefault();
-  const users = get("users");
-  users.push({
-    nombre: regNombre.value,
-    dni: regDNI.value,
-    email: regEmail.value,
-    pass: hash(regPass.value)
-  });
-  set("users", users);
-  alert("Cuenta creada");
-  toggleAuth();
-};
-
-/* ====== INICIO ====== */
-function iniciar(){
-  const u = JSON.parse(localStorage.getItem("activo"));
-  if(!u) return;
-  auth.classList.add("d-none");
-  pacientePortal.classList.remove("d-none");
-  pacienteNombre.textContent = u.nombre;
-  cargarPaciente();
-  cargarMedico();
-}
-
-/* ====== LOGOUT ====== */
-function logout(){
-  localStorage.removeItem("activo");
-  location.reload();
-}
-
-/* ====== CITAS ====== */
-citaForm.onsubmit = e =>{
-  e.preventDefault();
-  const citas = get("citas");
-  const u = JSON.parse(localStorage.getItem("activo"));
-  citas.push({
-    id: Date.now(),
-    paciente: u.nombre,
-    fecha: fecha.value,
-    hora: hora.value,
-    especialidad: especialidad.value,
-    estado: "Pendiente"
-  });
-  set("citas", citas);
-  cargarPaciente();
-};
-
-function cargarPaciente(){
-  const citas = get("citas");
-  tablaPaciente.innerHTML = "";
-  citas.forEach(c=>{
-    tablaPaciente.innerHTML += `
-      <tr>
-        <td>${c.fecha}</td>
-        <td>${c.hora}</td>
-        <td>${c.estado}</td>
-        <td>${c.estado==="Aprobada"?`<button class="btn btn-success btn-sm" onclick="video('${c.id}')">Entrar</button>`:""}</td>
-      </tr>`;
-  });
-}
-
-function cargarMedico(){
-  medicoPortal.classList.remove("d-none");
-  const citas = get("citas");
-  tablaMedico.innerHTML = "";
-  citas.filter(c=>c.estado==="Pendiente").forEach(c=>{
-    tablaMedico.innerHTML += `
-      <tr>
-        <td>${c.paciente}</td>
-        <td>${c.fecha}</td>
-        <td>${c.hora}</td>
-        <td>
-          <button class="btn btn-success btn-sm" onclick="aprobar(${c.id})">✔</button>
-          <button class="btn btn-danger btn-sm" onclick="rechazar(${c.id})">✖</button>
-        </td>
-      </tr>`;
-  });
-}
-
-function aprobar(id){
-  const citas = get("citas");
-  citas.find(c=>c.id===id).estado="Aprobada";
-  set("citas",citas);
-  cargarPaciente(); cargarMedico();
-}
-
-function rechazar(id){
-  const citas = get("citas");
-  citas.find(c=>c.id===id).estado="Rechazada";
-  set("citas",citas);
-  cargarPaciente(); cargarMedico();
-}
-
-/* ====== VIDEO ====== */
-function video(id){
-  video.innerHTML="";
-  new JitsiMeetExternalAPI("meet.jit.si",{
-    roomName:"telemed-"+id,
-    parentNode: video,
-    width:"100%",
-    height:500
-  });
-}
-
-iniciar();
-</script>
+<!-- Bootstrap JS (OBLIGATORIO PARA TABS) -->
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.jsscript>
 
 </body>
 </html>
